@@ -1,4 +1,4 @@
-package com.ldh.portfolio.builder;
+package com.ldh.portfolio.builder.project;
 
 import com.ldh.portfolio.domain.project.Project;
 import com.ldh.portfolio.domain.project.ProjectDetail;

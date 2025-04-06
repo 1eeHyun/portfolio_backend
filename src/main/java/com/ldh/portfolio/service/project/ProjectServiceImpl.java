@@ -1,6 +1,6 @@
 package com.ldh.portfolio.service.project;
 
-import com.ldh.portfolio.builder.ProjectResponseBuilder;
+import com.ldh.portfolio.builder.project.ProjectResponseBuilder;
 import com.ldh.portfolio.dto.project.ProjectResponseDTO;
 import com.ldh.portfolio.repository.project.ProjectRepository;
 import com.ldh.portfolio.validator.project.ProjectValidator;
