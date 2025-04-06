@@ -2,8 +2,8 @@ package com.ldh.portfolio.builder;
 
 import com.ldh.portfolio.domain.project.Project;
 import com.ldh.portfolio.domain.project.ProjectDetail;
-import com.ldh.portfolio.dto.ProjectDetailDTO;
-import com.ldh.portfolio.dto.ProjectResponseDTO;
+import com.ldh.portfolio.dto.project.ProjectDetailDTO;
+import com.ldh.portfolio.dto.project.ProjectResponseDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

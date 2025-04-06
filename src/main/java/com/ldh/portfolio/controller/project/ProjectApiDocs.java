@@ -1,7 +1,7 @@
 package com.ldh.portfolio.controller.project;
 
 import com.ldh.portfolio.controller.ApiBase;
-import com.ldh.portfolio.dto.ProjectResponseDTO;
+import com.ldh.portfolio.dto.project.ProjectResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;

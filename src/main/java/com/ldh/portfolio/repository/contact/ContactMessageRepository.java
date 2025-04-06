@@ -1,0 +1,7 @@
+package com.ldh.portfolio.repository.contact;
+
+import com.ldh.portfolio.domain.contact.ContactMessage;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ContactMessageRepository extends JpaRepository<ContactMessage, Long> {
+}

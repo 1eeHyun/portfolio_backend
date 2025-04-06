@@ -1,4 +1,4 @@
-package com.ldh.portfolio.dto;
+package com.ldh.portfolio.dto.project;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;

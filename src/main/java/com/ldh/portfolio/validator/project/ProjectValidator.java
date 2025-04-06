@@ -1,7 +1,7 @@
-package com.ldh.portfolio.validator;
+package com.ldh.portfolio.validator.project;
 
-import com.ldh.portfolio.dto.ProjectRequestDTO;
-import com.ldh.portfolio.repository.ProjectRepository;
+import com.ldh.portfolio.dto.project.ProjectRequestDTO;
+import com.ldh.portfolio.repository.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

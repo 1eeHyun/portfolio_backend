@@ -1,4 +1,4 @@
-package com.ldh.portfolio.repository;
+package com.ldh.portfolio.repository.project;
 
 import com.ldh.portfolio.domain.project.Project;
 import org.springframework.data.jpa.repository.JpaRepository;

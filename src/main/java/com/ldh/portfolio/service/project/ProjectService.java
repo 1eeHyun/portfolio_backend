@@ -1,6 +1,6 @@
-package com.ldh.portfolio.service;
+package com.ldh.portfolio.service.project;
 
-import com.ldh.portfolio.dto.ProjectResponseDTO;
+import com.ldh.portfolio.dto.project.ProjectResponseDTO;
 
 import java.util.List;
 
