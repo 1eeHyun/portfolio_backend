@@ -1,12 +1,17 @@
-package com.ldh.portfolio.domain;
+package com.ldh.portfolio.domain.project;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProjectDetail {
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String featureTitle;
