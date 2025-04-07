@@ -2,8 +2,8 @@ package com.ldh.portfolio.builder.project;
 
 import com.ldh.portfolio.domain.project.Project;
 import com.ldh.portfolio.domain.project.ProjectDetail;
-import com.ldh.portfolio.dto.project.ProjectDetailDTO;
 import com.ldh.portfolio.dto.project.ProjectResponseDTO;
+import com.ldh.portfolio.dto.project.detail.ProjectDetailResponseDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,9 +24,9 @@ public class ProjectResponseBuilder {
                 .build();
     }
 
-    private List<ProjectDetailDTO> toSlideDTOs(List<ProjectDetail> details) {
+    private List<ProjectDetailResponseDTO> toSlideDTOs(List<ProjectDetail> details) {
         return details.stream().map(detail ->
-                ProjectDetailDTO.builder()
+                ProjectDetailResponseDTO.builder()
                         .featureTitle(detail.getFeatureTitle())
                         .imageUrl(detail.getImageUrl())
                         .techUsed(detail.getTechUsed())

@@ -1,5 +1,6 @@
 package com.ldh.portfolio.dto.project;
 
+import com.ldh.portfolio.dto.project.detail.ProjectDetailResponseDTO;
 import lombok.*;
 
 import java.util.List;
@@ -16,6 +17,6 @@ public class ProjectResponseDTO {
     private String techStack;
     private String githubUrl;
     private String demoUrl;
-    private List<ProjectDetailDTO> slides;
+    private List<ProjectDetailResponseDTO> slides;
 }
 

@@ -5,6 +5,7 @@ import com.ldh.portfolio.dto.project.ProjectResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -12,8 +13,8 @@ import java.util.List;
 public interface ProjectApiDocs extends ApiBase {
 
     @Operation(summary = "Get all projects", description = "Get every stored project")
-    ResponseEntity<List<ProjectResponseDTO>> getAllProjects();
+    public ResponseEntity<List<ProjectResponseDTO>> getAllProjects();
 
     @Operation(summary = "Get a project", description = "Get one stored project")
-    ResponseEntity<ProjectResponseDTO> getProjectById(Long id);
+    public ResponseEntity<ProjectResponseDTO> getProjectById(@PathVariable Long id);
 }

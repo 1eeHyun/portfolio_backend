@@ -1,4 +1,4 @@
-package com.ldh.portfolio.dto.project;
+package com.ldh.portfolio.dto.project.detail;
 
 import lombok.*;
 
@@ -7,7 +7,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProjectDetailDTO {
+public class ProjectDetailRequestDTO {
+
+    private Long projectId;
+
     private String featureTitle;
     private String imageUrl;
     private String techUsed;

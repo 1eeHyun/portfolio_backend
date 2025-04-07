@@ -13,5 +13,8 @@ public class ProjectRequestDTO {
     @NotBlank
     private String title;
 
-    private String description;
+    private String summary;
+    private String techStack;
+    private String githubUrl;
+    private String demoUrl;
 }

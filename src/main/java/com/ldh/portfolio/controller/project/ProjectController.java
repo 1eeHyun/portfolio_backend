@@ -24,7 +24,6 @@ public class ProjectController implements ProjectApiDocs {
         return ResponseEntity.ok(projectService.getAllProjects());
     }
 
-    @Override
     @GetMapping("/{id}")
     public ResponseEntity<ProjectResponseDTO> getProjectById(@PathVariable Long id) {
         return ResponseEntity.ok(projectService.getProjectById(id));

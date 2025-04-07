@@ -23,6 +23,7 @@ public class Project {
     private String githubUrl;
     private String demoUrl;
 
+    @Builder.Default
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<ProjectDetail> slides = new ArrayList<>();
 }
