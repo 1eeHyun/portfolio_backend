@@ -1,9 +1,10 @@
 package com.ldh.portfolio.controller.skill;
 
-import com.ldh.portfolio.controller.ApiBase;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Tag(name = "Skill API", description = "Skill related API")
-public interface SkillApiDocs extends ApiBase {
+@RequestMapping("/api/admin/skills")
+public interface SkillApiDocs {
 
 }

@@ -1,14 +1,15 @@
 package com.ldh.portfolio.controller.about;
 
-import com.ldh.portfolio.controller.ApiBase;
 import com.ldh.portfolio.dto.about.AboutResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Tag(name = "About API", description = "Public API to fetch about section")
-public interface AboutApiDocs extends ApiBase {
+@RequestMapping("/api/about")
+public interface AboutApiDocs{
 
     @Operation(summary = "Get about", description = "Retrieve the about section information")
-    public ResponseEntity<AboutResponseDTO> getAbout();
+    ResponseEntity<AboutResponseDTO> getAbout();
 }

@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/admin/projects/{postId}/details")
 @RequiredArgsConstructor
 public class AdminProjectDetailController implements AdminProjectDetailApiDocs{
 
