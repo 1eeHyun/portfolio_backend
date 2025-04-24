@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/admin/projects/{postId}/details")
 public class AdminProjectDetailController implements AdminProjectDetailApiDocs{
 
     private final ProjectDetailService detailService;

@@ -4,12 +4,10 @@ import com.ldh.portfolio.dto.project.detail.ProjectDetailResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Tag(name = "Project Detail API", description = "Public project detail API")
-@RequestMapping("/api/projects/{projectId}/details")
 public interface ProjectDetailApiDocs{
 
     @Operation(summary = "Get slides of project", description = "Retrieves a certain project's slides(Functional description).")

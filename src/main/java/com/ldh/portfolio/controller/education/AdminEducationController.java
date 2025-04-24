@@ -6,10 +6,12 @@ import com.ldh.portfolio.service.education.EducationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/admin/educations")
 public class AdminEducationController implements AdminEducationApiDocs {
 
     private final EducationService educationService;
