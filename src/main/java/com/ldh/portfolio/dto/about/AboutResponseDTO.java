@@ -10,8 +10,11 @@ import lombok.*;
 public class AboutResponseDTO {
 
     private Long id;
-    private String bio;
-    private String location;
+    private String linkedInUrl;
+    private String githubUrl;
+    private String heroSubtitle;
+    private String subBio;
+    private String fullBio;
     private String email;
     private String interests;
     private String profileImageUrl;

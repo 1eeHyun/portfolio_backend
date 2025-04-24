@@ -10,8 +10,11 @@ public class AboutResponseBuilder {
     public AboutResponseDTO toDTO(About about) {
         return AboutResponseDTO.builder()
                 .id(about.getId())
-                .bio(about.getBio())
-                .location(about.getLocation())
+                .linkedInUrl(about.getLinkedInUrl())
+                .githubUrl(about.getGithubUrl())
+                .heroSubtitle(about.getHeroSubtitle())
+                .subBio(about.getSubBio())
+                .fullBio(about.getFullBio())
                 .email(about.getEmail())
                 .interests(about.getInterests())
                 .profileImageUrl(about.getProfileImageUrl())

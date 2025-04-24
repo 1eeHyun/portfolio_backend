@@ -9,8 +9,11 @@ import lombok.*;
 @Builder
 public class AboutRequestDTO {
 
-    private String bio;
-    private String location;
+    private String linkedInUrl;
+    private String githubUrl;
+    private String heroSubtitle;
+    private String subBio;
+    private String fullBio;
     private String email;
     private String interests;
     private String profileImageUrl;
