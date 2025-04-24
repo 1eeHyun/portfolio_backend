@@ -15,7 +15,6 @@ public class AboutServiceImpl implements AboutService {
     private final AboutRepository aboutRepository;
     private final AboutResponseBuilder responseBuilder;
 
-
     @Override
     public AboutResponseDTO get() {
 
