@@ -26,7 +26,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public CourseResponseDTO createOrUpdate(CourseRequestDTO dto) {
+    public CourseResponseDTO create(CourseRequestDTO dto) {
 
         Course course = Course.builder()
                 .name(dto.getName())

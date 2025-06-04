@@ -11,8 +11,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ProjectResponseDTO {
+
     private Long id;
     private String title;
+    private String projectPicUrl;
     private String summary;
     private String techStack;
     private String githubUrl;

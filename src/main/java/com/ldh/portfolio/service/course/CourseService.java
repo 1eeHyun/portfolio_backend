@@ -8,5 +8,5 @@ import java.util.List;
 public interface CourseService {
 
     List<CourseResponseDTO> get();
-    CourseResponseDTO createOrUpdate(CourseRequestDTO dto);
+    CourseResponseDTO create(CourseRequestDTO dto);
 }
