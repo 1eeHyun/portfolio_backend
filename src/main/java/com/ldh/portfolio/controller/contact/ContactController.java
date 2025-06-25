@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequiredArgsConstructor
-@RequestMapping("/api/contact")
+@RequestMapping("/api/contacts")
 public class ContactController implements ContactApiDocs {
 
     private final ContactService contactService;

@@ -1,9 +1,6 @@
 package com.ldh.portfolio.domain.course;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -19,6 +16,7 @@ public class Course {
     private Long id;
 
     private String name;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String logoUrl;
 }

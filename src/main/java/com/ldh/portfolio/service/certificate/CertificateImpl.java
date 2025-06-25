@@ -25,6 +25,7 @@ public class CertificateImpl implements CertificateService {
                 .issuer(dto.getIssuer())
                 .issueDate(dto.getIssueDate())
                 .credentialUrl(dto.getCredentialUrl())
+                .description(dto.getDescription())
                 .build();
 
         return certificateBuilder.toDTO(certificateRepository.save(cert));

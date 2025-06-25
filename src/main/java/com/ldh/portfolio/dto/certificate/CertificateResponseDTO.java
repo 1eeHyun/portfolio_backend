@@ -14,5 +14,6 @@ public class CertificateResponseDTO {
     private String issuer;
     private String issueDate;
     private String credentialUrl;
+    private String description;
 }
 

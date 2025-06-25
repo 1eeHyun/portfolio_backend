@@ -14,6 +14,7 @@ public class CertificateBuilder {
                 .issuer(cert.getIssuer())
                 .issueDate(cert.getIssueDate())
                 .credentialUrl(cert.getCredentialUrl())
+                .description(cert.getDescription())
                 .build();
     }
 }
