@@ -36,6 +36,7 @@ public class AboutServiceImpl implements AboutService {
         about.setLinkedInUrl(dto.getLinkedInUrl());
         about.setProfileImageUrl(dto.getProfileImageUrl());
         about.setSubBio(dto.getSubBio());
+        about.setEmail(dto.getEmail());
         return responseBuilder.toDTO(aboutRepository.save(about));
     }
 }

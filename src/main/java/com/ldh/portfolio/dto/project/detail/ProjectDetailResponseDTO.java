@@ -13,4 +13,6 @@ public class ProjectDetailResponseDTO {
     private String imageUrl;
     private String techUsed;
     private String description;
+
+    private String demoLink;
 }

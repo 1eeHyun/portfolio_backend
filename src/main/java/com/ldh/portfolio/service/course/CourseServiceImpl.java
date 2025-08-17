@@ -30,7 +30,8 @@ public class CourseServiceImpl implements CourseService {
 
         Course course = Course.builder()
                 .name(dto.getName())
-                .name(dto.getDescription())
+                .year(dto.getYear())
+                .description(dto.getDescription())
                 .logoUrl(dto.getLogoUrl())
                 .build();
 

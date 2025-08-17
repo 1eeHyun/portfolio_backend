@@ -13,12 +13,15 @@ import java.util.List;
 public class ProjectResponseDTO {
 
     private Long id;
+    private Integer year;
+
     private String title;
     private String projectPicUrl;
     private String summary;
     private String techStack;
     private String githubUrl;
     private String demoUrl;
+
     private List<ProjectDetailResponseDTO> slides;
 }
 

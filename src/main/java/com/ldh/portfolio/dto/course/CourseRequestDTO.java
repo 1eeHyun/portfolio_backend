@@ -11,6 +11,7 @@ import lombok.*;
 public class CourseRequestDTO {
 
     private String name;
+    private Integer year;
     private String description;
     private String logoUrl;
 }

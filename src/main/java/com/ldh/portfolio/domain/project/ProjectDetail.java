@@ -17,7 +17,11 @@ public class ProjectDetail {
     private String featureTitle;
     private String imageUrl;
     private String techUsed;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
+
+    private String demoLink;
 
     @ManyToOne
     @JoinColumn(name = "project_id")

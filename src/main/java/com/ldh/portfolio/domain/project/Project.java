@@ -17,6 +17,8 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Integer year;
+
     private String title;
     private String projectPicUrl;
     private String summary;
@@ -26,5 +28,5 @@ public class Project {
 
     @Builder.Default
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-    private List<ProjectDetail> slides = new ArrayList<>();
+    private List<ProjectDetail> details = new ArrayList<>();
 }

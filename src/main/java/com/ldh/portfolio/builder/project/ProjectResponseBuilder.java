@@ -15,12 +15,14 @@ public class ProjectResponseBuilder {
     public ProjectResponseDTO toDTO(Project project) {
         return ProjectResponseDTO.builder()
                 .id(project.getId())
+                .year(project.getYear())
+                .projectPicUrl(project.getProjectPicUrl())
                 .title(project.getTitle())
                 .summary(project.getSummary())
                 .techStack(project.getTechStack())
                 .githubUrl(project.getGithubUrl())
                 .demoUrl(project.getDemoUrl())
-                .slides(toSlideDTOs(project.getSlides()))
+                .slides(toSlideDTOs(project.getDetails()))
                 .build();
     }
 
@@ -31,6 +33,7 @@ public class ProjectResponseBuilder {
                         .imageUrl(detail.getImageUrl())
                         .techUsed(detail.getTechUsed())
                         .description(detail.getDescription())
+                        .demoLink(detail.getDemoLink())
                         .build()
         ).collect(Collectors.toList());
     }

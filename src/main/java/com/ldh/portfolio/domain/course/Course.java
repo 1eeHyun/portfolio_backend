@@ -15,7 +15,10 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Integer year;
+
     private String name;
+
     @Column(columnDefinition = "TEXT")
     private String description;
     private String logoUrl;

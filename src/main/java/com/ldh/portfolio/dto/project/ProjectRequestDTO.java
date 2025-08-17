@@ -13,6 +13,7 @@ public class ProjectRequestDTO {
     @NotBlank
     private String title;
 
+    private Integer year;
     private String projectPicUrl;
     private String summary;
     private String techStack;

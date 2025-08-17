@@ -39,6 +39,8 @@ public class ProjectServiceImpl implements ProjectService {
         projectValidator.validateCreate(dto);
 
         Project project = Project.builder()
+                .year(dto.getYear())
+                .projectPicUrl(dto.getProjectPicUrl())
                 .title(dto.getTitle())
                 .summary(dto.getSummary())
                 .techStack(dto.getTechStack())

@@ -1,9 +1,6 @@
 package com.ldh.portfolio.dto.about;
 
-import com.ldh.portfolio.dto.course.CourseResponseDTO;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -21,5 +18,4 @@ public class AboutResponseDTO {
     private String email;
     private String interests;
     private String profileImageUrl;
-    private List<CourseResponseDTO> courses;
 }
