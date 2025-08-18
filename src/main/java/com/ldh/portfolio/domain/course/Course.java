@@ -15,9 +15,13 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer year;
+    @Column(nullable = false, unique = true, length = 50)
+    private String code;
 
+    @Column(nullable = false, length = 200)
     private String name;
+
+    private Integer year;
 
     @Column(columnDefinition = "TEXT")
     private String description;

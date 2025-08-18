@@ -1,18 +1,16 @@
-package com.ldh.portfolio.dto.course;
+package com.ldh.portfolio.dto.project;
 
 import lombok.*;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class CourseResponseDTO {
-
+public class CourseRefDTO {
     private Long id;
     private String code;
-    private Integer year;
     private String name;
-    private String description;
+    private Integer year;
     private String logoUrl;
 }

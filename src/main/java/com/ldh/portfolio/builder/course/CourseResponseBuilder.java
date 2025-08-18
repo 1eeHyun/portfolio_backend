@@ -10,6 +10,7 @@ public class CourseResponseBuilder {
     public CourseResponseDTO toDTO(Course course) {
         return CourseResponseDTO.builder()
                 .id(course.getId())
+                .code(course.getCode())
                 .year(course.getYear())
                 .name(course.getName())
                 .description(course.getDescription())
