@@ -32,7 +32,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
-	runtimeOnly 'com.mysql:mysql-connector-j:8.3.0'
+	runtimeOnly 'com.mysql:mysql-connector-j:9.0.0'
 
 	// AWS SDK v2
 	implementation 'software.amazon.awssdk:s3:2.20.96'
