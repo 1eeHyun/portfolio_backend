@@ -20,7 +20,5 @@ public class ProjectHeaderListItemDTO {
     private String externalUrl;
     private boolean hasExternalLink;
 
-    private String githubUrl;
-
     private Set<String> techStacks;
 }
