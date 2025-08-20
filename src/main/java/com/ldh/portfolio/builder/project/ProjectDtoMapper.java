@@ -48,6 +48,7 @@ public class ProjectDtoMapper {
                 .projectCount(projectCount)
                 .displayMode(h.getDisplayMode())
                 .externalUrl(external)
+                .githubUrl(h.getGithubUrl())
                 .hasExternalLink(external != null && !external.isBlank())
                 .techStacks(h.getTechStacks())
                 .build();

@@ -5,6 +5,7 @@ import com.ldh.portfolio.domain.project.DisplayMode;
 import com.ldh.portfolio.domain.project.ProjectHeader;
 import com.ldh.portfolio.dto.project.ProjectHeaderDetailDTO;
 import com.ldh.portfolio.dto.project.ProjectHeaderListItemDTO;
+import com.ldh.portfolio.dto.project.ProjectItemListDTO;
 import com.ldh.portfolio.dto.project.request.ProjectHeaderCreateRequest;
 import com.ldh.portfolio.dto.project.request.ProjectHeaderUpdateRequest;
 import com.ldh.portfolio.repository.project.ProjectHeaderRepository;
@@ -14,10 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -34,11 +32,11 @@ public class ProjectHeaderServiceImpl implements ProjectHeaderService {
     @Override
     @Transactional(readOnly = true)
     public List<ProjectHeaderListItemDTO> listHeaders() {
-        var headers = headerRepo.findAllByOrderByYearDescSortOrderAscIdDesc();
-        var ids = headers.stream().map(ProjectHeader::getId).toList();
 
-        // N+1 방지를 위해 한번에 카운트
-        var countMap = itemRepo.countByHeaderIds(ids).stream()
+        List<ProjectHeader> headers = headerRepo.findAllByOrderByYearDescSortOrderAscIdDesc();
+        List<Long> ids = headers.stream().map(ProjectHeader::getId).toList();
+
+        Map<Long, Long> countMap = itemRepo.countByHeaderIds(ids).stream()
                 .collect(Collectors.toMap(
                         ProjectItemRepository.HeaderCountView::getHeaderId,
                         ProjectItemRepository.HeaderCountView::getProjectCount));
@@ -51,9 +49,10 @@ public class ProjectHeaderServiceImpl implements ProjectHeaderService {
     @Override
     @Transactional(readOnly = true)
     public ProjectHeaderDetailDTO headerDetail(Long headerId) {
-        var header = headerRepo.findById(headerId)
+
+        ProjectHeader header = headerRepo.findById(headerId)
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
-        var items = itemRepo.findByHeader_IdOrderByYearDescIdDesc(headerId)
+        List<ProjectItemListDTO> items = itemRepo.findByHeader_IdOrderByYearDescIdDesc(headerId)
                 .stream().map(mapper::toItemList).toList();
         return mapper.toHeaderDetail(header, items);
     }
@@ -64,7 +63,7 @@ public class ProjectHeaderServiceImpl implements ProjectHeaderService {
     public Long createHeader(ProjectHeaderCreateRequest req) {
         validateHeaderLinks(req.getDisplayMode(), req.getLiveUrl(), req.getGithubUrl(), req.getDocsUrl(), req.getVideoUrl());
 
-        var header = ProjectHeader.builder()
+        ProjectHeader header = ProjectHeader.builder()
                 .title(req.getTitle())
                 .subtitle(req.getSubtitle())
                 .coverImageUrl(req.getCoverImageUrl())
@@ -85,7 +84,8 @@ public class ProjectHeaderServiceImpl implements ProjectHeaderService {
     @Override
     @Transactional
     public void updateHeader(Long headerId, ProjectHeaderUpdateRequest req) {
-        var h = headerRepo.findById(headerId)
+
+        ProjectHeader h = headerRepo.findById(headerId)
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
 
         if (req.getTitle() != null) h.setTitle(req.getTitle());
@@ -109,6 +109,7 @@ public class ProjectHeaderServiceImpl implements ProjectHeaderService {
     }
 
     private void validateHeaderLinks(DisplayMode mode, String live, String gh, String docs, String vid) {
+
         if (mode == null) return;
         switch (mode) {
             case LIVE -> {
