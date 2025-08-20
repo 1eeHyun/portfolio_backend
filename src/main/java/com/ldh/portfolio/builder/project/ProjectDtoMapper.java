@@ -28,16 +28,6 @@ public class ProjectDtoMapper {
 
     /** ========== HEADER ========== */
     public ProjectHeaderListItemDTO toHeaderList(ProjectHeader h, int projectCount) {
-        String external = null;
-        if (h.getDisplayMode() != null) {
-            switch (h.getDisplayMode()) {
-                case LIVE -> external = h.getLiveUrl();
-                case GITHUB -> external = h.getGithubUrl();
-                case DOCS -> external = h.getDocsUrl();
-                case VIDEO -> external = h.getVideoUrl();
-                default -> external = null;
-            }
-        }
 
         return ProjectHeaderListItemDTO.builder()
                 .id(h.getId())
@@ -47,9 +37,8 @@ public class ProjectDtoMapper {
                 .year(h.getYear())
                 .projectCount(projectCount)
                 .displayMode(h.getDisplayMode())
-                .externalUrl(external)
+                .liveUrl(h.getLiveUrl())
                 .githubUrl(h.getGithubUrl())
-                .hasExternalLink(external != null && !external.isBlank())
                 .techStacks(h.getTechStacks())
                 .build();
     }

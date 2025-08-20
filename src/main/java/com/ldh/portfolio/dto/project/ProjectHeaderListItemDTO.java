@@ -16,10 +16,9 @@ public class ProjectHeaderListItemDTO {
     private Integer year;
     private Integer projectCount;
 
-    private DisplayMode displayMode;  // INTERNAL/LIVE/GITHUB/DOCS/VIDEO
-    private String externalUrl;
-    private boolean hasExternalLink;
+    private DisplayMode displayMode;  // INTERNAL/LIVE
 
+    private String liveUrl;
     private String githubUrl;
 
     private Set<String> techStacks;

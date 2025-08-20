@@ -115,15 +115,6 @@ public class ProjectHeaderServiceImpl implements ProjectHeaderService {
             case LIVE -> {
                 if (isBlank(live)) throw new ResponseStatusException(BAD_REQUEST, "LIVE requires liveUrl");
             }
-            case GITHUB -> {
-                if (isBlank(gh)) throw new ResponseStatusException(BAD_REQUEST, "GITHUB requires githubUrl");
-            }
-            case DOCS -> {
-                if (isBlank(docs)) throw new ResponseStatusException(BAD_REQUEST, "DOCS requires docsUrl");
-            }
-            case VIDEO -> {
-                if (isBlank(vid)) throw new ResponseStatusException(BAD_REQUEST, "VIDEO requires videoUrl");
-            }
             case INTERNAL -> { /* no-op */ }
         }
     }
