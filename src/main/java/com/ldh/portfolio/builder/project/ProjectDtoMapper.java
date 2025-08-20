@@ -28,6 +28,7 @@ public class ProjectDtoMapper {
 
     /** ========== HEADER ========== */
     public ProjectHeaderListItemDTO toHeaderList(ProjectHeader h, int projectCount) {
+
         String external = null;
         if (h.getDisplayMode() != null) {
             switch (h.getDisplayMode()) {
@@ -48,6 +49,7 @@ public class ProjectDtoMapper {
                 .projectCount(projectCount)
                 .displayMode(h.getDisplayMode())
                 .externalUrl(external)
+                .githubUrl(h.getGithubUrl())
                 .hasExternalLink(external != null && !external.isBlank())
                 .techStacks(h.getTechStacks())
                 .build();

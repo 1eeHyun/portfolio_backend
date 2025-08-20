@@ -37,7 +37,6 @@ public class ProjectHeaderServiceImpl implements ProjectHeaderService {
         var headers = headerRepo.findAllByOrderByYearDescSortOrderAscIdDesc();
         var ids = headers.stream().map(ProjectHeader::getId).toList();
 
-        // N+1 방지를 위해 한번에 카운트
         var countMap = itemRepo.countByHeaderIds(ids).stream()
                 .collect(Collectors.toMap(
                         ProjectItemRepository.HeaderCountView::getHeaderId,
@@ -51,6 +50,7 @@ public class ProjectHeaderServiceImpl implements ProjectHeaderService {
     @Override
     @Transactional(readOnly = true)
     public ProjectHeaderDetailDTO headerDetail(Long headerId) {
+
         var header = headerRepo.findById(headerId)
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
         var items = itemRepo.findByHeader_IdOrderByYearDescIdDesc(headerId)
