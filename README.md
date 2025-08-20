@@ -287,12 +287,6 @@ Springdoc/OpenAPI is enabled via `*ApiDocs` classes.
 
 ---
 
-## License
-
-MIT (or your preferred license). Add a `LICENSE` file if needed.
-
----
-
 ## Contributing
 
 PRs and issues are welcome. Please include:
