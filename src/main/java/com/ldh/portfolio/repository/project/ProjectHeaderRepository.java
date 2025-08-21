@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProjectHeaderRepository extends JpaRepository<ProjectHeader, Long> {
 
     List<ProjectHeader> findAllByOrderByYearDescSortOrderAscIdDesc();
+    List<ProjectHeader> findByTitleContainingIgnoreCaseOrderByYearDescSortOrderAscIdDesc(String title);
 }

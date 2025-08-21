@@ -1,6 +1,7 @@
-package com.ldh.portfolio.controller.project;
+package com.ldh.portfolio.controller.project.api;
 
 import com.ldh.portfolio.builder.project.ProjectDtoMapper;
+import com.ldh.portfolio.controller.project.docs.ProjectItemApiDocs;
 import com.ldh.portfolio.domain.project.ProjectItem;
 import com.ldh.portfolio.dto.project.ProjectItemDetailDTO;
 import com.ldh.portfolio.dto.project.ProjectItemListDTO;

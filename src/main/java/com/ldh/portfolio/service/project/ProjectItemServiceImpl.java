@@ -2,13 +2,14 @@ package com.ldh.portfolio.service.project;
 
 import com.ldh.portfolio.builder.project.ProjectDtoMapper;
 import com.ldh.portfolio.domain.course.Course;
+import com.ldh.portfolio.domain.project.ProjectHeader;
 import com.ldh.portfolio.domain.project.ProjectImage;
 import com.ldh.portfolio.domain.project.ProjectItem;
 import com.ldh.portfolio.domain.project.ProjectOrigin;
 import com.ldh.portfolio.dto.project.ProjectItemDetailDTO;
-import com.ldh.portfolio.dto.project.request.ProjectImageUpsertDTO;
-import com.ldh.portfolio.dto.project.request.ProjectItemCreateRequest;
-import com.ldh.portfolio.dto.project.request.ProjectItemUpdateRequest;
+import com.ldh.portfolio.dto.project.request.item.ProjectImageUpsertDTO;
+import com.ldh.portfolio.dto.project.request.item.ProjectItemCreateRequest;
+import com.ldh.portfolio.dto.project.request.item.ProjectItemUpdateRequest;
 import com.ldh.portfolio.repository.course.CourseRepository;
 import com.ldh.portfolio.repository.project.ProjectHeaderRepository;
 import com.ldh.portfolio.repository.project.ProjectImageRepository;
@@ -44,7 +45,7 @@ public class ProjectItemServiceImpl implements ProjectItemService {
     @Override
     @Transactional(readOnly = true)
     public ProjectItemDetailDTO detail(Long itemId) {
-        var item = itemRepo.findWithImagesById(itemId);
+        ProjectItem item = itemRepo.findWithImagesById(itemId);
         if (item == null) throw new ResponseStatusException(NOT_FOUND);
         return mapper.toItemDetail(item);
     }
@@ -53,7 +54,7 @@ public class ProjectItemServiceImpl implements ProjectItemService {
     @Override
     @Transactional
     public Long create(ProjectItemCreateRequest req) {
-        var header = headerRepo.findById(req.getHeaderId())
+        ProjectHeader header = headerRepo.findById(req.getHeaderId())
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Header not found"));
 
         Course course = null;
@@ -62,7 +63,7 @@ public class ProjectItemServiceImpl implements ProjectItemService {
                     .orElseThrow(() -> new ResponseStatusException(BAD_REQUEST, "Course not found"));
         }
 
-        var item = ProjectItem.builder()
+        ProjectItem item = ProjectItem.builder()
                 .header(header)
                 .origin(req.getOrigin())
                 .course(course)
@@ -75,7 +76,7 @@ public class ProjectItemServiceImpl implements ProjectItemService {
                 .techStacks(normalizeStacks(req.getTechStacks()))
                 .build();
 
-        var images = upsertImages(new ArrayList<>(), req.getImages());
+        List<ProjectImage> images = upsertImages(new ArrayList<>(), req.getImages());
         images.forEach(img -> img.setProject(item));
         item.setImages(images);
 
@@ -87,11 +88,12 @@ public class ProjectItemServiceImpl implements ProjectItemService {
     @Override
     @Transactional
     public void update(Long itemId, ProjectItemUpdateRequest req) {
-        var item = itemRepo.findWithImagesById(itemId);
+
+        ProjectItem item = itemRepo.findWithImagesById(itemId);
         if (item == null) throw new ResponseStatusException(NOT_FOUND);
 
         if (req.getHeaderId() != null) {
-            var newHeader = headerRepo.findById(req.getHeaderId())
+            ProjectHeader newHeader = headerRepo.findById(req.getHeaderId())
                     .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Header not found"));
             item.setHeader(newHeader);
         }
@@ -102,7 +104,8 @@ public class ProjectItemServiceImpl implements ProjectItemService {
             if (item.getOrigin() != ProjectOrigin.COURSE) {
                 throw new ResponseStatusException(BAD_REQUEST, "courseId allowed only when origin=COURSE");
             }
-            var course = courseRepo.findById(req.getCourseId())
+
+            Course course = courseRepo.findById(req.getCourseId())
                     .orElseThrow(() -> new ResponseStatusException(BAD_REQUEST, "Course not found"));
             item.setCourse(course);
         }
@@ -120,7 +123,7 @@ public class ProjectItemServiceImpl implements ProjectItemService {
 
 
         if (req.getImages() != null) {
-            var merged = upsertImages(item.getImages(), req.getImages());
+            List<ProjectImage> merged = upsertImages(item.getImages(), req.getImages());
             merged.forEach(img -> img.setProject(item));
 
             item.getImages().clear();
@@ -132,6 +135,7 @@ public class ProjectItemServiceImpl implements ProjectItemService {
 
 
     private void ensureSinglePrimary(List<ProjectImage> images) {
+
         long primaries = images.stream().filter(ProjectImage::isPrimaryImage).count();
         if (primaries > 1) {
             throw new ResponseStatusException(BAD_REQUEST, "Only one primary image is allowed.");
@@ -143,6 +147,7 @@ public class ProjectItemServiceImpl implements ProjectItemService {
     }
 
     private List<ProjectImage> upsertImages(List<ProjectImage> current, List<ProjectImageUpsertDTO> reqList) {
+
         if (reqList == null) return current; // no change
         if (reqList.isEmpty()) return new ArrayList<>(); // delete all
 
@@ -151,10 +156,10 @@ public class ProjectItemServiceImpl implements ProjectItemService {
                 .collect(Collectors.toMap(ProjectImage::getId, Function.identity()));
 
         List<ProjectImage> result = new ArrayList<>(reqList.size());
-        for (var dto : reqList) {
+        for (ProjectImageUpsertDTO dto : reqList) {
             if (dto.getId() != null) {
                 // update existing
-                var img = currentMap.get(dto.getId());
+                ProjectImage img = currentMap.get(dto.getId());
                 if (img == null) {
 
                     throw new ResponseStatusException(BAD_REQUEST, "Image id not found: " + dto.getId());
@@ -168,7 +173,7 @@ public class ProjectItemServiceImpl implements ProjectItemService {
                 result.add(img);
             } else {
                 // create new
-                var img = ProjectImage.builder()
+                ProjectImage img = ProjectImage.builder()
                         .imageUrl(dto.getImageUrl())
                         .altText(dto.getAltText())
                         .sortOrder(dto.getSortOrder())

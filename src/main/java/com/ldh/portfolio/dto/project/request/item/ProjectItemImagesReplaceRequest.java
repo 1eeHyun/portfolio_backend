@@ -1,4 +1,4 @@
-package com.ldh.portfolio.dto.project.request;
+package com.ldh.portfolio.dto.project.request.item;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;

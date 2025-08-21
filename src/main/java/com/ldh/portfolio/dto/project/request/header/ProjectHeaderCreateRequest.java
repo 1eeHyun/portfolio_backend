@@ -1,4 +1,4 @@
-package com.ldh.portfolio.dto.project.request;
+package com.ldh.portfolio.dto.project.request.header;
 
 import com.ldh.portfolio.domain.project.DisplayMode;
 import jakarta.validation.constraints.*;

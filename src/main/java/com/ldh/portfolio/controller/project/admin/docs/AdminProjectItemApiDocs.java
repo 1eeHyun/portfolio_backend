@@ -1,7 +1,7 @@
-package com.ldh.portfolio.controller.project;
+package com.ldh.portfolio.controller.project.admin.docs;
 
-import com.ldh.portfolio.dto.project.request.ProjectItemCreateRequest;
-import com.ldh.portfolio.dto.project.request.ProjectItemUpdateRequest;
+import com.ldh.portfolio.dto.project.request.item.ProjectItemCreateRequest;
+import com.ldh.portfolio.dto.project.request.item.ProjectItemUpdateRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;

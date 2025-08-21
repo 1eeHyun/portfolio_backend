@@ -1,4 +1,4 @@
-package com.ldh.portfolio.dto.project.request;
+package com.ldh.portfolio.dto.project.request.item;
 
 import com.ldh.portfolio.domain.project.ProjectOrigin;
 import jakarta.validation.Valid;

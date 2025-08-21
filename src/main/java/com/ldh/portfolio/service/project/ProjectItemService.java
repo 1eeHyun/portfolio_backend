@@ -2,8 +2,8 @@ package com.ldh.portfolio.service.project;
 
 import com.ldh.portfolio.domain.project.ProjectItem;
 import com.ldh.portfolio.dto.project.ProjectItemDetailDTO;
-import com.ldh.portfolio.dto.project.request.ProjectItemCreateRequest;
-import com.ldh.portfolio.dto.project.request.ProjectItemUpdateRequest;
+import com.ldh.portfolio.dto.project.request.item.ProjectItemCreateRequest;
+import com.ldh.portfolio.dto.project.request.item.ProjectItemUpdateRequest;
 
 import java.util.List;
 

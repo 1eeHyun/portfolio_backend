@@ -20,16 +20,29 @@ public class AdminAuthInterceptor implements HandlerInterceptor {
             throws Exception {
 
         String uri = request.getRequestURI();
-        if (uri.startsWith("/api/admin")) {
-            String token = request.getHeader("Authorization");
 
-            if (token == null || !token.equals(adminToken)) {
-                response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                response.getWriter().write("Unauthorized: Invalid or missing admin token.");
-                return false;
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) return true;
+
+        if (!uri.startsWith("/api/admin")) return true;
+
+        if (uri.startsWith("/api/admin/auth")) return true;
+
+        var session = request.getSession(false);
+        if (session != null && Boolean.TRUE.equals(session.getAttribute("ADMIN_AUTH"))) return true;
+
+        // Authorization Header Token (Postman)
+        String raw = request.getHeader("Authorization");
+        if (raw != null) {
+            String trimmed = raw.trim();
+            if (trimmed.equals(adminToken) || trimmed.equals("Bearer " + adminToken)) {
+                return true;
             }
         }
 
-        return true;
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.setContentType("text/plain;charset=UTF-8");
+        response.getWriter().write("Unauthorized: Invalid or missing admin token.");
+        response.getWriter().flush();
+        return false;
     }
 }

@@ -6,8 +6,8 @@ import com.ldh.portfolio.domain.project.ProjectHeader;
 import com.ldh.portfolio.dto.project.ProjectHeaderDetailDTO;
 import com.ldh.portfolio.dto.project.ProjectHeaderListItemDTO;
 import com.ldh.portfolio.dto.project.ProjectItemListDTO;
-import com.ldh.portfolio.dto.project.request.ProjectHeaderCreateRequest;
-import com.ldh.portfolio.dto.project.request.ProjectHeaderUpdateRequest;
+import com.ldh.portfolio.dto.project.request.header.ProjectHeaderCreateRequest;
+import com.ldh.portfolio.dto.project.request.header.ProjectHeaderUpdateRequest;
 import com.ldh.portfolio.repository.project.ProjectHeaderRepository;
 import com.ldh.portfolio.repository.project.ProjectItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +45,40 @@ public class ProjectHeaderServiceImpl implements ProjectHeaderService {
                 .map(h -> mapper.toHeaderList(h, (int) countMap.getOrDefault(h.getId(), 0L).longValue()))
                 .toList();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProjectHeaderListItemDTO> listHeaders(String q) {
+
+        if (q == null || q.trim().isEmpty()) {
+            return listHeaders();
+        }
+
+        final String query = q.trim();
+
+        List<ProjectHeader> headers =
+                headerRepo.findByTitleContainingIgnoreCaseOrderByYearDescSortOrderAscIdDesc(query);
+
+        if (headers.isEmpty()) {
+            return List.of();
+        }
+
+        List<Long> ids = headers.stream().map(ProjectHeader::getId).toList();
+
+        Map<Long, Long> countMap = itemRepo.countByHeaderIds(ids).stream()
+                .collect(Collectors.toMap(
+                        ProjectItemRepository.HeaderCountView::getHeaderId,
+                        ProjectItemRepository.HeaderCountView::getProjectCount
+                ));
+
+        return headers.stream()
+                .map(h -> mapper.toHeaderList(
+                        h,
+                        Math.toIntExact(countMap.getOrDefault(h.getId(), 0L))
+                ))
+                .toList();
+    }
+
 
     @Override
     @Transactional(readOnly = true)

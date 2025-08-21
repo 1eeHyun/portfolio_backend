@@ -1,4 +1,4 @@
-package com.ldh.portfolio.controller.project;
+package com.ldh.portfolio.controller.project.docs;
 
 import com.ldh.portfolio.dto.project.ProjectItemDetailDTO;
 import com.ldh.portfolio.dto.project.ProjectItemListDTO;

@@ -1,7 +1,8 @@
-package com.ldh.portfolio.controller.project;
+package com.ldh.portfolio.controller.project.admin.api;
 
-import com.ldh.portfolio.dto.project.request.ProjectHeaderCreateRequest;
-import com.ldh.portfolio.dto.project.request.ProjectHeaderUpdateRequest;
+import com.ldh.portfolio.controller.project.admin.docs.AdminProjectHeaderApiDocs;
+import com.ldh.portfolio.dto.project.request.header.ProjectHeaderCreateRequest;
+import com.ldh.portfolio.dto.project.request.header.ProjectHeaderUpdateRequest;
 import com.ldh.portfolio.service.project.ProjectHeaderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
