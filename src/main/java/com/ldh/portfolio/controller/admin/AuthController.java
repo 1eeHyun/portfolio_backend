@@ -22,6 +22,7 @@ public class AuthController {
     @PostMapping("/login")
     public void login(@RequestBody(required = false) LoginReq req, HttpServletRequest httpReq) {
 
+        log.info(req.token);
         String provided = (req != null ? req.token() : null);
         if (provided == null || provided.isBlank()) {
             String raw = httpReq.getHeader("Authorization");
@@ -32,6 +33,8 @@ public class AuthController {
         }
         String configured = normalize(adminToken);
         String got = normalize(provided);
+        log.info(got);
+        log.info("equal? ={}", configured);
         if (configured == null || configured.isEmpty()) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Admin token not configured");
         if (!configured.equals(got)) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid token");
 
