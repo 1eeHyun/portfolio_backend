@@ -14,4 +14,5 @@ public interface ProjectItemService {
     Long create(ProjectItemCreateRequest req);
 
     void update(Long itemId, ProjectItemUpdateRequest req);
+    void delete(Long itemId);
 }

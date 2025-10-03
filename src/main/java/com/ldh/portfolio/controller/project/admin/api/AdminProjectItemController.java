@@ -36,4 +36,10 @@ public class AdminProjectItemController implements AdminProjectItemApiDocs {
         itemService.update(itemId, req);
         return ResponseEntity.noContent().build();
     }
+
+    @Override
+    public ResponseEntity<Void> delete(@PathVariable Long itemId) {
+        itemService.delete(itemId);
+        return ResponseEntity.noContent().build();
+    }
 }

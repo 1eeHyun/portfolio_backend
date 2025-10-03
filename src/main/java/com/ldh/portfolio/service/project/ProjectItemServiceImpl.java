@@ -14,6 +14,7 @@ import com.ldh.portfolio.repository.course.CourseRepository;
 import com.ldh.portfolio.repository.project.ProjectHeaderRepository;
 import com.ldh.portfolio.repository.project.ProjectImageRepository;
 import com.ldh.portfolio.repository.project.ProjectItemRepository;
+import com.ldh.portfolio.repository.project.ProjectItemSnippetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +36,7 @@ public class ProjectItemServiceImpl implements ProjectItemService {
     private final CourseRepository courseRepo;
     private final ProjectImageRepository imageRepo;
     private final ProjectDtoMapper mapper;
+    private final ProjectItemSnippetRepository snippetRepo;
 
     @Override
     @Transactional(readOnly = true)
@@ -131,6 +133,17 @@ public class ProjectItemServiceImpl implements ProjectItemService {
         }
 
         ensureSinglePrimary(item.getImages());
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long itemId) {
+
+        ProjectItem item = itemRepo.findWithImagesById(itemId);
+        if (item == null) throw new ResponseStatusException(NOT_FOUND);
+
+        snippetRepo.deleteByProjectItem(item);
+        itemRepo.delete(item);
     }
 
 

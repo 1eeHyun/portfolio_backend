@@ -34,5 +34,4 @@ public class ProjectItemController implements ProjectItemApiDocs {
     public ResponseEntity<ProjectItemDetailDTO> detail(@PathVariable Long itemId) {
         return ResponseEntity.ok(itemService.detail(itemId));
     }
-
 }

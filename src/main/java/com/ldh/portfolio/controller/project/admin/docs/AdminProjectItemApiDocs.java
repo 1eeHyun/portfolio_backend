@@ -4,10 +4,7 @@ import com.ldh.portfolio.dto.project.request.item.ProjectItemCreateRequest;
 import com.ldh.portfolio.dto.project.request.item.ProjectItemUpdateRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 public interface AdminProjectItemApiDocs {
 
@@ -17,4 +14,7 @@ public interface AdminProjectItemApiDocs {
     @PatchMapping("/project-items/{itemId}")
     ResponseEntity<Void> update(@PathVariable Long itemId,
                                 @Valid @RequestBody ProjectItemUpdateRequest req);
+
+    @DeleteMapping("/project-items/{itemId}")
+    ResponseEntity<Void> delete(@PathVariable Long itemId);
 }

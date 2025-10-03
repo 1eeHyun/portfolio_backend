@@ -39,4 +39,10 @@ public class AdminProjectHeaderController implements AdminProjectHeaderApiDocs {
         headerService.updateHeader(headerId, req);
         return ResponseEntity.noContent().build();
     }
+
+    @Override
+    public ResponseEntity<Void> delete(@PathVariable Long headerId) {
+        headerService.deleteHeader(headerId);
+        return ResponseEntity.noContent().build();
+    }
 }

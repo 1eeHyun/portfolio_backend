@@ -3,6 +3,7 @@ package com.ldh.portfolio.service.project;
 import com.ldh.portfolio.builder.project.ProjectDtoMapper;
 import com.ldh.portfolio.domain.project.DisplayMode;
 import com.ldh.portfolio.domain.project.ProjectHeader;
+import com.ldh.portfolio.domain.project.ProjectItem;
 import com.ldh.portfolio.dto.project.ProjectHeaderDetailDTO;
 import com.ldh.portfolio.dto.project.ProjectHeaderListItemDTO;
 import com.ldh.portfolio.dto.project.ProjectItemListDTO;
@@ -10,7 +11,9 @@ import com.ldh.portfolio.dto.project.request.header.ProjectHeaderCreateRequest;
 import com.ldh.portfolio.dto.project.request.header.ProjectHeaderUpdateRequest;
 import com.ldh.portfolio.repository.project.ProjectHeaderRepository;
 import com.ldh.portfolio.repository.project.ProjectItemRepository;
+import com.ldh.portfolio.repository.project.ProjectItemSnippetRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -27,6 +30,7 @@ public class ProjectHeaderServiceImpl implements ProjectHeaderService {
 
     private final ProjectHeaderRepository headerRepo;
     private final ProjectItemRepository itemRepo;
+    private final ProjectItemSnippetRepository snippetRepo;
     private final ProjectDtoMapper mapper;
 
     @Override
@@ -140,6 +144,26 @@ public class ProjectHeaderServiceImpl implements ProjectHeaderService {
         if (req.getTechStacks() != null) {
             h.setTechStacks(normalizeStacks(req.getTechStacks()));
         }
+    }
+
+    @Override
+    @Transactional
+    public void deleteHeader(Long headerId) {
+        ProjectHeader header = headerRepo.findById(headerId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        List<ProjectItem> items = itemRepo.findAllByHeaderId(headerId);
+
+        for (ProjectItem item : items) {
+            snippetRepo.deleteByProjectItem(item);
+        }
+
+        itemRepo.deleteAll(items);
+
+        // 4) 마지막으로 헤더 제거
+        headerRepo.delete(header);
+
+
     }
 
     private void validateHeaderLinks(DisplayMode mode, String live, String gh, String docs, String vid) {

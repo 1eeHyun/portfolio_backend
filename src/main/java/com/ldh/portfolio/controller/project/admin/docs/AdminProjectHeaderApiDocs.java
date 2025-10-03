@@ -4,10 +4,7 @@ import com.ldh.portfolio.dto.project.request.header.ProjectHeaderCreateRequest;
 import com.ldh.portfolio.dto.project.request.header.ProjectHeaderUpdateRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 public interface AdminProjectHeaderApiDocs {
 
@@ -17,4 +14,7 @@ public interface AdminProjectHeaderApiDocs {
     @PatchMapping("/{headerId}")
     ResponseEntity<Void> update(@PathVariable Long headerId,
                                 @Valid @RequestBody ProjectHeaderUpdateRequest req);
+
+    @DeleteMapping("/{headerId}")
+    ResponseEntity<Void> delete(@PathVariable Long headerId);
 }

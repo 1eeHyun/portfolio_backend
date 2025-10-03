@@ -49,4 +49,7 @@ public interface ProjectItemRepository extends JpaRepository<ProjectItem, Long> 
     List<ProjectItem> searchByAnyTech(@Param("techs") Collection<String> techs);
 
     List<ProjectItem> findByCourse_IdOrderByYearDescIdDesc(Long courseId);
+
+    @Query("select i from ProjectItem i where i.header.id = :headerId")
+    List<ProjectItem> findAllByHeaderId(@Param("headerId") Long headerId);
 }

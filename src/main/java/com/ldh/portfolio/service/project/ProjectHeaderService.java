@@ -17,4 +17,5 @@ public interface ProjectHeaderService {
     Long createHeader(ProjectHeaderCreateRequest req);
 
     void updateHeader(Long headerId, ProjectHeaderUpdateRequest req);
+    void deleteHeader(Long headerId);
 }
